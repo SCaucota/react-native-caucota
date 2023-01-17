@@ -1,4 +1,3 @@
-/* import { StatusBar } from 'expo-status-bar'; */
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import Modal from './src/components/Modal';
@@ -8,7 +7,7 @@ import Intro from './src/components/Intro';
 export default function App() {
 
   const [textItem, setTextItem] = useState('');
-  const [itemList, setItemList] = useState(['Magdalenas']);
+  const [itemList, setItemList] = useState([]);
   const [itemSelected, setItemSelected] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -27,11 +26,8 @@ export default function App() {
       <View style={styles.renderItemStyle}>
         <Text style={styles.items}>{item}</Text>
         <TouchableOpacity style={styles.button} onPress={() => handleModal(item)}>
-          <Text style={{color:'#AD7EDE', fontSize: 16}}>Editar</Text>
+          <Text style={{color:'#8845CC', fontSize: 16}}>Editar</Text>
         </TouchableOpacity>
-        {/* <View style={{paddingLeft: 10}}>
-          <Button color='black' title='Editar' onPress={() => handleModal(item)}/>
-        </View> */}
       </View>
     )
   };
@@ -47,11 +43,6 @@ export default function App() {
     setModalVisible(!modalVisible)
   };
 
-/*   const onHandlerModal = id => {
-    setItemSelected(itemList.filter(item => item.id === id[0]))
-    setModalVisible(!modalVisible)
-  } */
-
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -59,26 +50,12 @@ export default function App() {
           <Text style={styles.brandName}>viewStar</Text>
         </View>
         <View>
-          <Text style={styles.subTitulos}>Hola Coder!</Text>
+          <Text style={styles.subTitles}>Hola Coder!</Text>
         </View>
         <AddItem
         changeItem={onHandlerChangeItem}
         addItem={addItem}
         textValue={textItem}
-          /* <View style={styles.inputContainer}>
-            <TextInput
-              style={styles.input}
-              placeholder='Ingrese la película'
-              placeholderTextColor='grey'
-              onChangeText={onHandlerChangeItem}
-              value={textItem}
-            />
-            <Button
-              color='#8845CC'
-              title='Agregar'
-              onPress={addItem}
-            />
-          </View> */
         />
         <View style={{marginTop: 10}}>
           <FlatList
@@ -86,41 +63,14 @@ export default function App() {
             keyExtractor={item => item}
             renderItem={renderItem}
           />
-          {/* {
-            itemList.map(item =>{
-              <View>
-                <Text style={{color: 'white'}}>{item}</Text>
-              </View>
-            })
-          } */}
         </View>
-        <Intro
-          /*  <Text style={styles.subTitulos}>¿Quiénes somos?</Text>
-            <Image style={styles.imagen} source={{ uri: 'https://es.rollingstone.com/wp-content/uploads/2022/02/25-peliculas-que-debes-ver-en-el-2022-portada.jpg' }} />
-            <Text style={styles.texto}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nisi repellendus eius impedit iure quod nemo natus repellat perferendis, facere magni omnis similique adipisci quos alias debitis?</Text> */
-        />
-        {/* <StatusBar style="auto" /> */}
+        <Intro />
       </View>
       <Modal
       visible={modalVisible}
       itemSelected={itemSelected}
       actionDeleteItem={() => onHandlerDelete(itemSelected)}
       actionCancelModal={() => setModalVisible(false)}
-        /* <View style={styles.modalConatiner}>
-          <View style={styles.modalStyle}>
-            <Text style={styles.modalTextStyle}>{itemSelected}</Text>
-            <Button
-            color='#8845CC'
-            title='Eliminar'
-            onPress={() => onHandlerDelete (itemSelected)}
-            />
-            <Button
-            color='#8845CC'
-            title='Cancelar'
-            onPress={() => setModalVisible(false)}
-            />
-          </View>
-        </View> */
       />
     </ScrollView>
   );
@@ -142,38 +92,13 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingLeft: 20,
   },
-  subTitulos: {
+  subTitles: {
     color: 'white',
     backgroundColor: '#AD7EDE',
     fontSize: 22,
     padding: 15,
     textAlign: 'center',
   },
-/*   inputContainer: {
-    backgroundColor: '#000000',
-    width: 300,
-    flex: 2,
-    marginHorizontal: 40,
-    padding: 3,
-  },
-  input: {
-    color: '#8845CC',
-    fontSize: 20,
-    paddingBottom: 10,
-  }, */
-  /* inputButton: {
-    backgroundColor: '#000000',
-    alignItems: 'center',
-  }, */
-  /* imagen: {
-    width: 370,
-    height: 300,
-  }, */
-  /* texto: {
-    fontSize: 18,
-    padding: 20,
-    color: 'white',
-  }, */
   renderItemStyle: {
     height: 80,
     flexDirection: 'row',
@@ -197,25 +122,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 9,
     marginLeft: 40
   }
-  /* modalConatiner: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalStyle: {
-    margin: 20,
-    backgroundColor: '#8845CC',
-    borderRadius: 20,
-    padding: 40,
-    alignItems: 'center',
-    shadowColor: '#A977DC',
-    shadowOffset: {
-      width: 5,
-      height: 3,
-    },
-  },
-  modalTextStyle: {
-    fontSize: 30,
-  }, */
 });
