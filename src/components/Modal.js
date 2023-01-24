@@ -1,11 +1,9 @@
-import { StyleSheet, Text, View, TouchableOpacity , Modal as NewModal } from 'react-native';
+import { StyleSheet,View , Modal as NewModal } from 'react-native';
 import React from 'react';
 
 const Modal = ({
     visible,
-    actionDeleteItem,
-    itemSelected,
-    actionCancelModal,
+    children,
 }) => {
     return (
         <NewModal
@@ -15,13 +13,7 @@ const Modal = ({
         >
             <View style={styles.modalConatiner}>
                 <View style={styles.modalStyle}>
-                    <Text style={styles.modalTextStyle}>{itemSelected}</Text>
-                    <TouchableOpacity style={styles.buttonDelete} onPress={() => actionDeleteItem()}>
-                        <Text style={styles.buttonText}>ELIMINAR</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonCancel} onPress={() => actionCancelModal()}>
-                        <Text style={styles.buttonText}>CANCELAR</Text>
-                    </TouchableOpacity>
+                    {children}
                 </View>
             </View>
         </NewModal>
@@ -35,7 +27,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 22,
+        backgroundColor: 'rgba(0, 0, 0, 0.4)'
     },
     modalStyle: {
         margin: 20,
@@ -49,25 +41,4 @@ const styles = StyleSheet.create({
             height: 3,
         },
     },
-    modalTextStyle: {
-        fontSize: 30,
-    },
-    buttonDelete: {
-        backgroundColor: 'black',
-        paddingHorizontal: 15,
-        paddingVertical: 8,
-        marginTop: 15,
-        borderRadius: 5,
-    },
-    buttonCancel: {
-        backgroundColor: 'black',
-        paddingHorizontal: 11,
-        paddingVertical: 8,
-        marginVertical: 5,
-        borderRadius: 5
-    },
-    buttonText: {
-        color: 'white', 
-        fontSize: 15
-    }
 })

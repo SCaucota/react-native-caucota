@@ -1,5 +1,6 @@
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 import React from 'react';
+import colors from '../constants/colors';
 
 const AddItem = ({
     changeItem,
@@ -17,7 +18,7 @@ const AddItem = ({
                     value={textValue}
                 />
                 <Button
-                    color='#8845CC'
+                    color={colors.buttonColor}
                     title='Agregar'
                     onPress={addItem}
                 />
@@ -30,7 +31,7 @@ export default AddItem;
 
 const styles = StyleSheet.create({
     inputContainer: {
-        backgroundColor: '#AD7EDE',
+        backgroundColor: colors.secondary,
         alignItems: 'center',
     },
     inputButton: {
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
         borderRadius: 15
     },
     input: {
-        color: '#8845CC',
+        color: 'white',
         fontSize: 20,
         paddingBottom: 10,
     },
