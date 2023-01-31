@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         padding: 3,
         borderWidth: 12,
         borderColor: 'black',
-        borderRadius: 15
+        borderRadius: 15,
+        marginBottom: 15
     },
     input: {
         color: 'white',

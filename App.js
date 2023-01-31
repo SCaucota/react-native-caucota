@@ -1,17 +1,12 @@
-import { useState } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+/* import { useState } from 'react'; */
+import { StyleSheet, View } from 'react-native';
 import { useFonts } from 'expo-font'
 import colors from './src/constants/colors';
 import Header from './src/components/Header';
-import Suscription from './src/screens/Suscription';
-import Home from './src/screens/Home';
-import { opcionsAvatar } from './mock';
+import StackNavigation from './src/navigation/StackNavigation';
 
 
 export default function App() {
-
-  const [useSuscription, setUseSuscription] = useState();
-  const [useHome, setUseHome] = useState();
 
   const [loaded] = useFonts({
     KavoonRegular: require('./assets/fonts/Kavoon-Regular.ttf'),
@@ -22,30 +17,11 @@ export default function App() {
     return null
   }
 
-  
-  
-  const onHandlerSuscription = itemList => {
-    setUseSuscription(itemList)
-  }
-
-  const onHandlerHome = avatarImage => {
-    setUseSuscription()
-    setUseHome(avatarImage)
-  }
-
-  let content = <Home newStyles={{fontFamily: 'TitilliumWebSemiBold'}} onChangeFavorite={onHandlerSuscription} />
-
-  if (useSuscription) {
-    content = <Suscription newStyles={{fontFamily: 'TitilliumWebSemiBold'}} opcionesMovies={opcionsAvatar} onChangeHome={onHandlerHome} />
-  }
-
   return (
-    <ScrollView>
       <View style={styles.container}>
-        <Header newStyles={{fontFamily: 'KavoonRegular'}}/>
-        {content}
+        <Header newStyles={{fontFamily: 'KavoonRegular'}} />
+        <StackNavigation />
       </View>
-    </ScrollView>
   );
 }
 

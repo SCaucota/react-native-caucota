@@ -1,20 +1,18 @@
-import { StyleSheet, View, Text, ScrollView, TextInput, Pressable, Image } from 'react-native';
+import { StyleSheet, View, Text, Pressable, Image, ScrollView, Button } from 'react-native';
 import React, { useState } from 'react';
+import { opcionsAvatar } from '../../mock';
 import colors from '../constants/colors';
 import Modal from '../components/Modal';
+import Forms from '../components/Forms';
 
-const Suscription = ({ opcionesMovies, onChangeHome, newStyles }) => {
+const Suscription = ({ newStyles, navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
-    const [modalVisible2, setModalVisible2] = useState(false)
+    const [modalVisible2, setModalVisible2] = useState(false);
     const [avatarImage, setAvatarImage] = useState('http://cdn.onlinewebfonts.com/svg/img_561543.png')
 
     const handleModal = () => {
         setModalVisible(true)
-    }
-
-    const openModalSuscription = () => {
-        setModalVisible2(true)
     }
 
     const handleCloseModal = () => {
@@ -30,9 +28,9 @@ const Suscription = ({ opcionesMovies, onChangeHome, newStyles }) => {
     return (
         <ScrollView>
             <View style={styles.container}>
-                <Text style={{...styles.subTitles, ...newStyles}} >SUSCRIBETE</Text>
+                <Text style={{ ...styles.subTitles, ...newStyles }} >SUSCRIBETE</Text>
                 <View style={styles.avatarNameContainer}>
-                    <View style={{marginBottom: 40, alignItems: 'center'}}>
+                    <View style={{ marginBottom: 40, alignItems: 'center' }}>
                         <Pressable onPress={() => handleModal()}>
                             <View style={styles.selectAvatar}>
                                 <Image style={styles.avatarSelected} source={{ uri: avatarImage }} />
@@ -48,13 +46,13 @@ const Suscription = ({ opcionesMovies, onChangeHome, newStyles }) => {
                         actionCancelModal={() => handleCloseModal()}
                     >
                         <Text style={{ fontSize: 20, paddingBottom: 10 }}>Elije un Avatar</Text>
-                        <View style={styles.moviesContainer}>
+                        <View style={styles.avatarContainer}>
                             {
-                                opcionesMovies.map((item) => {
+                                opcionsAvatar.map((item) => {
                                     return (
-                                        <View key={item.id} style={styles.movies}>
-                                            <Pressable key={item.id} onPress={() => newAvatar(item.img)}>
-                                                <Image style={styles.image} source={{ uri: item.img }} />
+                                        <View key={item.name + 'suscription'} style={styles.avatarCircle}>
+                                            <Pressable key={item.id + 'avatar'} onPress={() => newAvatar(item.img)}>
+                                                <Image key={item.img + 'image'} style={styles.image} source={{ uri: item.img }} />
                                             </Pressable>
                                         </View>
                                     )
@@ -62,53 +60,11 @@ const Suscription = ({ opcionesMovies, onChangeHome, newStyles }) => {
                             }
                         </View>
                     </Modal>
-                    <TextInput
-                        style={styles.input}
-                        placeholder='Nombre de Usuario'
-                        placeholderTextColor='grey'
-                        keyboardType='username'
-                    />
                 </View>
-                <View>
-                    <TextInput
-                        style={styles.input}
-                        keyboardType='email-address'
-                        placeholder='Email'
-                        placeholderTextColor='grey'
-                    />
-                    <TextInput
-                        style={styles.input}
-                        keyboardType='email-address'
-                        placeholder='Repita Email'
-                        placeholderTextColor='grey'
-                    />
-                </View>
-                <View>
-                    <TextInput
-                        style={styles.input}
-                        keyboardType='new-password'
-                        placeholder='Contraseña'
-                        placeholderTextColor='grey'
-                    />
-                    <TextInput
-                        style={styles.input}
-                        keyboardType='current-password'
-                        placeholder='Repita Contraseña'
-                        placeholderTextColor='grey'
-                    />
-                </View>
-                <Pressable style={styles.suscriptionBotton}>
-                    <Text style={styles.buttonText} onPress={() => openModalSuscription()} >Suscribirse</Text>
+                <Forms />
+                <Pressable style={styles.suscriptionBotton} onPress={() => navigation.navigate('Home')}>
+                    <Text style={styles.buttonText} >Volver Atrás</Text>
                 </Pressable>
-                <Modal
-                        visible={modalVisible2}
-                >
-                    <Text style={{ fontSize: 20, paddingBottom: 10 }}>¡FELICIDADES!</Text>
-                    <Text style={{ fontSize: 20, paddingBottom: 10 }}>Estas suscripto</Text>
-                    <Pressable style={styles.buttonCancel} onPress={() => onChangeHome(avatarImage)}>
-                            <Text style={styles.buttonText}>ACEPTAR</Text>
-                    </Pressable>
-                </Modal>
             </View>
         </ScrollView>
     )
@@ -118,7 +74,7 @@ export default Suscription;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height: 'auto',
         backgroundColor: 'black',
         alignItems: 'center',
     },
@@ -135,27 +91,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 9,
         marginLeft: 40
     },
-    texto: {
-        color: 'red'
-    },
-    input: {
-        color: 'black',
-        backgroundColor: 'white',
-        fontSize: 20,
-        paddingBottom: 10,
-        height: 50,
-        borderRadius: 5,
-        width: 280,
-        marginBottom: 25,
-        paddingLeft: 10,
-        paddingTop: 10
-    },
-    moviesContainer: {
+    avatarContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center'
     },
-    movies: {
+    avatarCircle: {
         backgroundColor: 'black',
         width: 100,
         height: 100,
@@ -199,9 +140,10 @@ const styles = StyleSheet.create({
     },
     suscriptionBotton: {
         backgroundColor: colors.buttonColor,
-        paddingHorizontal: 25,
+        width: 180,
         paddingVertical: 10,
         marginBottom: 30,
-        borderRadius: 5
+        borderRadius: 5,
+        alignItems: 'center'
     }
 })

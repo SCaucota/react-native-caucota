@@ -2,24 +2,24 @@ import { StyleSheet, View, Text, Image, FlatList, Pressable } from 'react-native
 import React from 'react';
 import colors from '../constants/colors';
 
-const OpcionsMovies = ({tipProd, newStyles}) => {
+const OpcionsMovies = ({ tipProd, newStyles }) => {
+
     return (
         <View style={styles.container}>
-            <Text style={{...styles.subTitles, ...newStyles}}>POPULARES</Text>
-            <FlatList
-            data={tipProd}
-            renderItem={data => (
-                <View style={styles.movies}>
-                    <Text style={{...styles.movieTitle, ...newStyles}}>{data.item.nombre}</Text>
-                    <Image style={styles.image} source={{uri: data.item.img}}  />
-                    <Pressable key={data.item.id} style={styles.boton}>
-                        <Text style={{color: 'white', fontSize: 20}}>Detalles</Text>
-                    </Pressable>
-                </View>
-            )}
-            keyExtractor={(item) => item.id}
-            />
-            
+            <Text style={{ ...styles.subTitles, ...newStyles }}>POPULARES</Text>
+            {
+                tipProd.map((item) => {
+                    return (
+                        <View key={item.id + 'opcionsMovies'} style={styles.movies}>
+                            <Text key={item.name + 'title'} style={{ ...styles.movieTitle, ...newStyles }}>{item.name}</Text>
+                            <Image key={item.img + 'url'} style={styles.image} source={{ uri: item.img }} />
+                            <Pressable key={item.id + 'id'} style={styles.button}>
+                                <Text key={item.type + 'type'} style={{ color: 'white', fontSize: 20 }}>Detalles</Text>
+                            </Pressable>
+                        </View>
+                    )
+                })
+            }
         </View>
     )
 }
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    boton: {
+    button: {
         alignItems: 'center',
         width: 150,
         paddingVertical: 10,

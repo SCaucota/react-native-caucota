@@ -20,7 +20,6 @@ export default Header;
 
 const styles = StyleSheet.create({
     navBar: {
-        flex: 1,
         backgroundColor: colors.primary,
         paddingBottom: 15,
         justifyContent: 'space-between',
