@@ -11,7 +11,6 @@ const Forms = () => {
     const [repeatEmail, setRepeatEmail] = useState('')
     const [password, setPassword] = useState('')
     const [repeatPassword, setRepeatPassword] = useState('')
-    const [infoUser, setInfoUser] = useState([])
 
     const [passwordVisible, setPasswordVisible] = useState(true)
     const [passwordVisible2, setPasswordVisible2] = useState(true)

@@ -42,17 +42,20 @@ const styles = StyleSheet.create({
         padding: 15,
         textAlign: 'center',
     },
-    movies: {
-        backgroundColor: 'white',
-        width: 190,
-        paddingVertical: 20,
-        marginBottom: 20,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
     image: {
         height: 300,
         width: 200
+    },
+    description: {
+        color: 'white',
+        paddingHorizontal: 26,
+        paddingVertical: 20,
+    },
+    type: {
+        textAlign: 'left',
+        fontSize: 20,
+        color: 'white',
+        paddingBottom: 15
     },
     button: {
         justifyContent: 'center',
@@ -65,15 +68,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 15
     },
-    description: {
-        color: 'white',
-        paddingHorizontal: 26,
-        paddingVertical: 20,
-    },
-    type: {
-        textAlign: 'left',
-        fontSize: 20,
-        color: 'white',
-        paddingBottom: 15
-    }
 })

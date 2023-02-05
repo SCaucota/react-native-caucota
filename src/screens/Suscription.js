@@ -29,11 +29,11 @@ const Suscription = ({ newStyles, navigation }) => {
         <ScrollView>
             <View style={styles.container}>
                 <Text style={{ ...styles.subTitles, ...newStyles }} >SUSCRIBETE</Text>
-                <View style={styles.avatarNameContainer}>
+                <View style={{alignItems: 'center'}}>
                     <View style={{ marginBottom: 40, alignItems: 'center' }}>
                         <Pressable onPress={() => handleModal()}>
                             <View style={styles.selectAvatar}>
-                                <Image style={styles.avatarSelected} source={{ uri: avatarImage }} />
+                                <Image style={styles.avatarSelectedImage} source={{ uri: avatarImage }} />
                             </View>
                         </Pressable>
                         <Pressable onPress={() => handleModal()}>
@@ -84,12 +84,18 @@ const styles = StyleSheet.create({
         padding: 15,
         textAlign: 'center',
     },
-    button: {
-        borderColor: colors.buttonColor,
-        borderWidth: 1.5,
-        paddingVertical: 6,
-        paddingHorizontal: 9,
-        marginLeft: 40
+    selectAvatar: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        width: 70,
+        height: 70,
+        borderRadius: 100
+    },
+    avatarSelectedImage: {
+        width: 60,
+        height: 60,
+        borderRadius: 100
     },
     avatarContainer: {
         flexDirection: 'row',
@@ -111,33 +117,6 @@ const styles = StyleSheet.create({
         height: 80,
         borderRadius: 100
     },
-    avatarSelected: {
-        width: 60,
-        height: 60,
-        borderRadius: 100
-    },
-    selectAvatar: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        width: 70,
-        height: 70,
-        borderRadius: 100
-    },
-    buttonCancel: {
-        backgroundColor: 'black',
-        paddingHorizontal: 18,
-        paddingVertical: 8,
-        marginVertical: 5,
-        borderRadius: 5
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 20
-    },
-    avatarNameContainer: {
-        alignItems: 'center'
-    },
     suscriptionBotton: {
         backgroundColor: colors.buttonColor,
         width: 180,
@@ -145,5 +124,9 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         borderRadius: 5,
         alignItems: 'center'
-    }
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 20
+    },
 })

@@ -1,9 +1,9 @@
-/* import { useState } from 'react'; */
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 import { useFonts } from 'expo-font'
 import colors from './src/constants/colors';
 import Header from './src/components/Header';
-import StackNavigation from './src/navigation/StackNavigation';
+import TabNavigation from './src/navigation/TabNavigation';
+import { NavigationContainer } from "@react-navigation/native"
 
 
 export default function App() {
@@ -18,10 +18,10 @@ export default function App() {
   }
 
   return (
-      <View style={styles.container}>
+      <NavigationContainer style={styles.container}>
         <Header newStyles={{fontFamily: 'KavoonRegular'}} />
-        <StackNavigation />
-      </View>
+        <TabNavigation/>
+      </NavigationContainer>
   );
 }
 
@@ -29,6 +29,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.secondary,
-    marginTop: 26
   },
 });

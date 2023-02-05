@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFonts } from 'expo-font'
-import { StyleSheet, Text, View, FlatList, Pressable, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, View, Pressable, ScrollView, Alert } from 'react-native';
 import colors from '../constants/colors';
 import { opcionsPopularMovies } from '../../mock';
 import AddItem from '../components/AddItem';
@@ -19,8 +19,12 @@ const Home = ({ navigation }) => {
     };
 
     const addItem = () => {
-        setItemList(prevState => [...prevState, textItem])
-        setTextItem('')
+        if (textItem != '') {
+            setItemList(prevState => [...prevState, textItem])
+            setTextItem('')
+        } else {
+            Alert.alert('Ups..', 'No escribiste nada')
+        }
     };
 
     const handleModal = item => {
@@ -39,7 +43,7 @@ const Home = ({ navigation }) => {
     };
 
     const [loaded] = useFonts({
-        TitilliumWebSemiBold: require( '../../assets/fonts/TitilliumWeb-SemiBold.ttf'),
+        TitilliumWebSemiBold: require('../../assets/fonts/TitilliumWeb-SemiBold.ttf'),
     })
 
     if (!loaded) {
@@ -49,12 +53,12 @@ const Home = ({ navigation }) => {
     return (
         <ScrollView>
             <View>
-                <View style={styles.inputContainer}>
-                    <View style={{backgroundColor: colors.secondary, alignItems: 'center'}}>
+                <View>
+                    <View style={{ backgroundColor: colors.secondary, alignItems: 'center' }}>
                         <Pressable style={styles.buttonSuscribe} onPress={() => navigation.navigate('Suscription')}>
-                            <Text style={{color: 'white', fontSize: 20}} >¡SUSCRIBETE!</Text>
+                            <Text style={styles.subTitles} >¡SUSCRIBETE!</Text>
                         </Pressable>
-                        <Text style={{ ...styles.subTitles, fontFamily: 'TitilliumWebSemiBold'}}>Hola Coder!</Text>
+                        <Text style={{ ...styles.subTitles, fontFamily: 'TitilliumWebSemiBold' }}>Hola Coder!</Text>
                     </View>
                     <AddItem
                         changeItem={onHandlerChangeItem}
@@ -74,11 +78,6 @@ const Home = ({ navigation }) => {
                                 )
                             })
                         }
-                    </View>
-                    <View style={{ alignItems: 'center', backgroundColor: colors.primary, paddingTop: 40 }}>
-                        <Pressable style={styles.buttonCatalogue} onPress={() => navigation.navigate('Movies')}>
-                            <Text style={{color: 'white'}}>CATÁLOGO COMPLETO</Text>
-                        </Pressable>
                     </View>
                     <OpcionsMovies newStyles={{fontFamily: 'TitilliumWebSemiBold'}} tipProd={opcionsPopularMovies} />
                 </View >
@@ -104,11 +103,18 @@ const Home = ({ navigation }) => {
 export default Home;
 
 const styles = StyleSheet.create({
+    buttonSuscribe: {
+        backgroundColor: colors.buttonColor,
+        borderRadius: 10,
+        paddingHorizontal: 18,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 370,
+    },
     subTitles: {
         color: 'white',
-        backgroundColor: colors.secondary,
         fontSize: 22,
-        padding: 15,
+        paddingVertical: 15,
         textAlign: 'center',
     },
     renderItemStyle: {
@@ -134,26 +140,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 9,
         marginLeft: 40
     },
-    buttonSuscribe: {
-        backgroundColor: colors.buttonColor,
-        borderRadius: 10,
-        paddingHorizontal: 18,
-        paddingVertical: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 370,
-        marginBottom: 20,
-    },
-    buttonCatalogue: {
-        backgroundColor: colors.secondary,
-        borderRadius: 10,
-        paddingHorizontal: 18,
-        paddingVertical: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 300,
-        marginBottom: 20,
-    },  
     modalTextStyle: {
         fontSize: 30,
     },

@@ -8,7 +8,6 @@ const Movies = ({ navigation }) => {
         navigation.navigate('Movie Detail', { movieSelected: item })
     }
 
-
     return (
             <View style={styles.container}>
                 <Text style={styles.subTitles}>CATÁLOGO</Text>
@@ -18,8 +17,8 @@ const Movies = ({ navigation }) => {
                         <View style={styles.movieContainer}>
                             <Text style={styles.movieTitle }>{data.item.name}</Text>
                             <Image style={styles.image} source={{ uri: data.item.img }} />
-                            <Pressable key={data.item.id} style={styles.button}>
-                                <Text style={{ color: 'white', fontSize: 18 }} onPress={() => saveChangeScreen(data.item)}>Detalles</Text>
+                            <Pressable onPress={() => saveChangeScreen(data.item)} key={data.item.id} style={styles.button}>
+                                <Text style={{ color: 'white', fontSize: 18 }} >Detalles</Text>
                             </Pressable>
                         </View>
                     )}
@@ -52,15 +51,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    image: {
-        height: 180,
-        width: 130
-    },
     movieTitle: {
         fontSize: 15,
         paddingBottom: 10,
         textDecorationColor: 'black',
         textDecorationLine: 'underline',
+    },
+    image: {
+        height: 180,
+        width: 130
     },
     button: {
         justifyContent: 'center',

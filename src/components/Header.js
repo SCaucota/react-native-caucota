@@ -9,9 +9,6 @@ const Header = ({newStyles}) => {
                 <Image style={styles.brandImage} source={require('../../assets/img/brandImage.png')} />
                 <Text style={{...styles.brandName, ...newStyles}}>viewStar</Text>
             </View>
-            <Pressable>
-                <Image style={styles.iconFavorites} source={require('../../assets/img/favorites.png')} />
-            </Pressable>
         </View>
     )
 }
@@ -26,14 +23,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         paddingHorizontal: 15,
+        marginTop: 25
     },
     brandContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-    },
-    brandName: {
-        fontSize: 25,
-        paddingTop: 12,
     },
     brandImage: {
         width: 50,
@@ -41,10 +35,8 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginRight: 10
     },
-    iconFavorites: {
-        width: 30,
-        height: 30,
-        marginTop: 10,
-        marginRight: 10,
-    }
+    brandName: {
+        fontSize: 25,
+        paddingTop: 12,
+    },
 })

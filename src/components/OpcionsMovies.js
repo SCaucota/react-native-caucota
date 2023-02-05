@@ -38,15 +38,6 @@ const styles = StyleSheet.create({
         padding: 15,
         textAlign: 'center',
     },
-    movieTitle: {
-        color: 'white',
-        fontSize: 20,
-        marginBottom: 25
-    },
-    image: {
-        width: 220,
-        height: 300,
-    },
     movies: {
         backgroundColor: 'black',
         paddingHorizontal: 25,
@@ -55,6 +46,15 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    movieTitle: {
+        color: 'white',
+        fontSize: 20,
+        marginBottom: 25
+    },
+    image: {
+        width: 220,
+        height: 300,
     },
     button: {
         alignItems: 'center',
