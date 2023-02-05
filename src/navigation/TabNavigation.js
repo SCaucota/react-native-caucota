@@ -21,14 +21,14 @@ export default TabNavigation = () => {
                 component={HomeNavigator}
                 options={{
                     tabBarIcon: () => (
-                        <Image style={{...styles.icon, width: 22, height: 22}} source={require('../../assets/img/house.png')} />
+                        <Image style={styles.icon} source={require('../../assets/img/house.png')} />
                     )
                 }}
             />
             <BottomTabs.Screen
                 options={{
                     tabBarIcon: () => (
-                        <Image style={{...styles.icon, width: 22, height: 22}} source={require('../../assets/img/list.png')} />
+                        <Image style={styles.icon} source={require('../../assets/img/list.png')} />
                     )
                 }}
                 name='Catálogo'
@@ -49,8 +49,8 @@ export default TabNavigation = () => {
 
 const styles = StyleSheet.create({
     icon: {
-        width: 28,
-        height: 28,
+        width: 22,
+        height: 22,
         marginTop: 15,
     },
     tabBar:{
