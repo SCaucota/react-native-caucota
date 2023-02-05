@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, Pressable, Image } from 'react-native';
-import { catalogueMovies } from '../../mock';
+import { catalogueMovies } from '../data/CatalogueMovies';
 
 const Movies = ({ navigation }) => {
 

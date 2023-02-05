@@ -1,6 +1,6 @@
-import { StyleSheet, View, Text, Pressable, Image, ScrollView, Button } from 'react-native';
+import { StyleSheet, View, Text, Pressable, Image, ScrollView } from 'react-native';
 import React, { useState } from 'react';
-import { opcionsAvatar } from '../../mock';
+import { opcionsAvatar } from '../data/OpcionsAvatar';
 import colors from '../constants/colors';
 import Modal from '../components/Modal';
 import Forms from '../components/Forms';

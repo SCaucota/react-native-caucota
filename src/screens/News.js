@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View, Pressable, Image } from 'react-nati
 import colors from '../constants/colors'
 import React from 'react'
 
-const Favorites = () => {
+const News = () => {
 
     return (
         <ScrollView>
@@ -38,7 +38,7 @@ const Favorites = () => {
     )
 }
 
-export default Favorites
+export default News
 
 const styles = StyleSheet.create({
     container: {

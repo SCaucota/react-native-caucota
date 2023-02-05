@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useFonts } from 'expo-font'
 import { StyleSheet, Text, View, Pressable, ScrollView, Alert } from 'react-native';
 import colors from '../constants/colors';
-import { opcionsPopularMovies } from '../../mock';
+import { opcionsPopularMovies } from '../data/OpcionsPopularMovies';
 import AddItem from '../components/AddItem';
 import OpcionsMovies from '../components/OpcionsMovies';
 import Modal from '../components/Modal';
