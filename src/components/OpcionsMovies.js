@@ -1,14 +1,25 @@
-import { StyleSheet, View, Text, Image, FlatList, Pressable } from 'react-native';
-import React from 'react';
+import { StyleSheet, View, Text, Image, Pressable } from 'react-native';
+import React, { useEffect } from 'react';
 import colors from '../constants/colors';
+import  { useSelector, useDispatch } from 'react-redux'
+import { popular_list } from '../store/actions/catalogue.action';
 
-const OpcionsMovies = ({ tipProd, newStyles }) => {
+const OpcionsMovies = ({ newStyles }) => {
+
+    const dispatch = useDispatch()
+    const popularMovies = useSelector(state => state.catalogue.filteredPopularMovies)
+    const catalogueMovies = useSelector(state => state.catalogue.catalogue)
+
+    useEffect(() => {
+        dispatch(popular_list(catalogueMovies))
+    },  [])
+
 
     return (
         <View style={styles.container}>
             <Text style={{ ...styles.subTitles, ...newStyles }}>POPULARES</Text>
             {
-                tipProd.map((item) => {
+                popularMovies.map((item) => {
                     return (
                         <View key={item.id + 'opcionsMovies'} style={styles.movies}>
                             <Text key={item.name + 'title'} style={{ ...styles.movieTitle, ...newStyles }}>{item.name}</Text>

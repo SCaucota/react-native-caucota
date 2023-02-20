@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useFonts } from 'expo-font'
-import { StyleSheet, Text, View, Pressable, ScrollView, Alert } from 'react-native';
+import { StyleSheet, Text, View, Pressable, ScrollView, Alert, Button } from 'react-native';
 import colors from '../constants/colors';
-import { opcionsPopularMovies } from '../data/OpcionsPopularMovies';
 import AddItem from '../components/AddItem';
 import OpcionsMovies from '../components/OpcionsMovies';
 import Modal from '../components/Modal';
+
 
 const Home = ({ navigation }) => {
 
@@ -13,6 +13,10 @@ const Home = ({ navigation }) => {
     const [itemList, setItemList] = useState([]);
     const [itemSelected, setItemSelected] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
+
+    const handleAddList = () => {
+        dispatch(finishList(movieList))
+    }
 
     const onHandlerChangeItem = text => {
         setTextItem(text)
@@ -79,13 +83,10 @@ const Home = ({ navigation }) => {
                             })
                         }
                     </View>
-                    <OpcionsMovies newStyles={{fontFamily: 'TitilliumWebSemiBold'}} tipProd={opcionsPopularMovies} />
+                    <OpcionsMovies newStyles={{ fontFamily: 'TitilliumWebSemiBold' }} />
                 </View >
                 <Modal
                     visible={modalVisible}
-                    itemSelected={itemSelected}
-                    actionDeleteItem={() => onHandlerDelete(itemSelected)}
-                    actionCancelModal={() => handleCloseModal()}
                 >
                     <Text style={styles.modalTextStyle}>{itemSelected}</Text>
                     <Pressable style={styles.buttonDelete} onPress={() => onHandlerDelete(itemSelected)}>
