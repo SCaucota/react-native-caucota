@@ -1,15 +1,50 @@
-import { StyleSheet, View, Text, Pressable, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Pressable, Image, ScrollView, Alert } from 'react-native';
 import React, { useState } from 'react';
 import { opcionsAvatar } from '../data/OpcionsAvatar';
 import colors from '../constants/colors';
 import Modal from '../components/Modal';
 import Forms from '../components/Forms';
+import * as ImagePicked from 'expo-image-picker'
 
 const Suscription = ({ newStyles, navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [modalVisible2, setModalVisible2] = useState(false);
     const [avatarImage, setAvatarImage] = useState('http://cdn.onlinewebfonts.com/svg/img_561543.png')
+
+    const verifyPermissions = async () => {
+        const {status} = await ImagePicked.requestCameraPermissionsAsync()
+
+        if  (status !== "granted") {
+            Alert.alert(
+                "Permisos",
+                "Debe dar permisos para utilizar la cámara",
+                [{text: "OK"}]
+            )
+            return false
+        }
+        return true
+    }
+
+    const handleSelectImage = async () => {
+        const isCameraOK = await verifyPermissions()
+        if(!isCameraOK) return
+
+        const photo = await ImagePicked.launchCameraAsync({
+            editionPhotos: true,
+            aspect: [16,9],
+            quality: 0.8
+        })
+
+        const onImage = photo => {
+            console.log(photo)
+        }
+
+        setAvatarImage(photo.assets[0].uri)
+        onImage(photo.assets[0].uri)
+
+        setModalVisible(false)
+    }
 
     const handleModal = () => {
         setModalVisible(true)
@@ -37,15 +72,14 @@ const Suscription = ({ newStyles, navigation }) => {
                             </View>
                         </Pressable>
                         <Pressable onPress={() => handleModal()}>
-                            <Text style={{ color: 'white' }}>Elije un Avatar</Text>
+                            <Text style={{ color: 'white' }}>Elegir perfil</Text>
                         </Pressable>
-
                     </View>
                     <Modal
                         visible={modalVisible}
                         actionCancelModal={() => handleCloseModal()}
                     >
-                        <Text style={{ fontSize: 20, paddingBottom: 10 }}>Elije un Avatar</Text>
+                        <Text styles={{fontSize: 20}}>Elije un avatar</Text>
                         <View style={styles.avatarContainer}>
                             {
                                 opcionsAvatar.map((item) => {
@@ -58,6 +92,12 @@ const Suscription = ({ newStyles, navigation }) => {
                                     )
                                 })
                             }
+                        </View>
+                        <View style={styles.photoContainer}>
+                            <Text>o</Text>
+                            <Pressable style={{...styles.suscriptionBotton, marginTop: 20}} onPress={handleSelectImage}>
+                                <Text style={styles.buttonText}>Toma una Foto</Text>
+                            </Pressable>
                         </View>
                     </Modal>
                 </View>
@@ -88,13 +128,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        width: 70,
-        height: 70,
+        width: 100,
+        height: 100,
         borderRadius: 100
     },
     avatarSelectedImage: {
-        width: 60,
-        height: 60,
+        width: 90,
+        height: 90,
         borderRadius: 100
     },
     avatarContainer: {
@@ -129,4 +169,9 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20
     },
+    photoContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 20
+    }
 })
